@@ -1,0 +1,25 @@
+
+Cho Database sau:
+	HOCVIEN (MAHV, HOTEN, NGSINH, DIACHI)
+	GIAOVIEN (MAGV, HOTEN, DIACHI, DIENTHOAI)
+	LOP (MALOP, TENLOP, MAGV, NGAYBD, NGAYKT, HOCPHI, NAMHOC) 
+	DANGKY (MAHV, MALOP, NGAYDK)
+
+
+Câu 1. Dùng ngôn ngữ SQL thực hiện các câu lệnh sau: 
+a. Tạo bảng LOP với các ràng buộc sau: 
+- Malop là khoá chính. 
+- MAGV là khoá ngoại, tham chiếu đến MAGV trong bảng GIAOVIEN.
+- TENLOP phải là duy nhất.
+- HOCPHI là một số dương.
+b. Tạo bảng DANGKY với các ràng buộc sau: 
+- MAHV và MALOP là khoá chính. 
+- MAHV và MALOP là các khoá ngoại lần lượt tham chiếu đến MAHV và MALOP của hai bảng HOCVIEN và LOP. 
+- NGAYDK mặc định là ngày hiện tại 
+c. Xóa ràng buộc khóa ngoại tham chiếu đến bảng LOP. 
+d. Thêm ràng buộc cho bảng LOP để đảm bào rằng ngày bắt đầu lớp học (NGAYBD) phải nhỏ hơn ngày kết thúc lớp học đó (NGAYKT). 
+
+Câu 2. Dùng ngôn ngữ SQL để thực hiện các câu lệnh thao tác dữ liệu như sau 
+a. Thêm một dòng dữ liệu vào bảng Lớp. Lưu ý: Sinh viên tự cho dữ liệu phù hợp với các ràng buộc của bảng Lớp. 
+b. Tăng học phí thêm 5.000.000 đồng cho lớp có mã số là “JavaAdv”. Tuy nhiên, nếu học phí mới lớn hơn 20.000.000 đồng thì chỉ lấy 20.000.000 đồng. Ví dụ: học phí của ‘JavaAdv’ hiện tại là 10.000.000 thì sau khi tăng học phí sẽ là 15.000.000. Nhưng nếu học phí hiện tại là 18.000.000 thì sau khi tăng, học phí chỉ là 20.000.000 đồng thay vì là 23.000.000 đồng. 
+c. Xoá những lớp kết thúc từ năm 2000 về trước

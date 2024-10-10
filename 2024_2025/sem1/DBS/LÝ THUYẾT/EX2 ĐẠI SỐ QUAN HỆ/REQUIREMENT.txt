@@ -1,0 +1,23 @@
+
+
+1. Cho một lược đồ CSDL dùng để quản lý các dự án tại công ty như sau:
+NHANVIEN (maNV, hoten, gioitinh, diachi, maphong)
+LOAINV (maloai, tenloai)
+PHONGBAN (maphong, tenphong)
+DUAN (maDA, tenDA, truongDA, kinhphi, diadiem)
+PHANCONG (maDA, maNV, ngayBD, ngayKT)
+
+Dùng đại số quan hệ thực hiện các yêu cầu sau:
+a. Cho biết tên của những Dự án có kinh phí dưới 10.000.000 đồng
+b. Cho biết danh sách các nhân viên được phân công tham gia dự án có mã số ‘TH01’ vừa tham gia đự án có mã số 	‘TH02’. Thông tin yêu cầu: Mã nhân viên, Tên nhân viên, địa chỉ. 
+c. Cho biết danh sách các nhân viên có tham gia dự án tại Hà Nội trong năm 2019. Thông tin yêu cầu: mã nhân viên, 	tên nhân viên, tên phòng. 
+
+2. HOCVIEN (MAHV, HOTEN, NGSINH, DIACHI)
+GIAOVIEN (MAGV, HOTEN, DIACHI, DIENTHOAI)
+LOP (MALOP, TENLOP, MAGV, NGAYBD, NGAYKT, HOCPHI, NAMHOC) 
+DANGKY (MAHV, MALOP, NGAYDK)
+
+Dùng đại số quan hệ thực hiện các yêu cầu sau: 
+a. Cho biết tên lớp có học phí > 10.000.000 đồng 
+b. Liệt kê mã lớp học được học viên ‘Nguyễn Duy Minh’ đăng ký học trong tháng 7/2019. 
+c. Cho biết họ tên của các giáo viên không dạy lớp học nào trong năm học ‘2019-2020’.

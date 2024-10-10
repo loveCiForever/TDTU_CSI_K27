@@ -1,0 +1,7 @@
+The diagram demonstrate the structure of a wind turbine and the suitable locations for their installation.
+
+The left diagram details the components of a wind turnbine. The machine consists of three blades made from either fiberflass or wood, which are connected to a generator capable of producing 1.5 megawatts of power. The generator is mounted on a steel tower and a wind sensor is placed on the top of the generator, which is used for measuring the speed and the direction of the winds. So that the computer or the engineer can adjust the angle of the blades.
+
+The right diagram illustrates three essential locations for wind turbines's installation. The first location is on a hill, where the wind direction is indicated by the biggest arrow. The second location is by the sea, where the maximum wind strengths are noted. The third location is on flat land near a house, where a smaller domestic turbine can producing 100 kilowatts of power.
+
+In summary, the diagrams offer an overview of the wind turbine’s design and propose several locations for effective wind energy capture. The selection of a site is influenced by factors such as wind intensity and the surrounding terrain, with options including hills, coastal regions, and residential areas.

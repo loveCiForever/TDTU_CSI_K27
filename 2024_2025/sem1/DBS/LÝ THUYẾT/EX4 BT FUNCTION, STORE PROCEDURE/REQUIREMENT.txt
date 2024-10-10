@@ -1,0 +1,26 @@
+
+
+Câu 1: Cho lược đồ cơ sở dữ liệu sau:
+- NHANVIEN (MANV, HOTEN, NGAYSINH, DCHI, PHAI, LUONG, MAPB)
+- THANNHAN (MANV, TENTN, PHAI, NGAYSINH, QUANHE)
+- PHONGBAN (MAPB, DIADIEM)
+- DUAN (MADA, TENDA, DIADIEM, MAPB)
+- PHANCONG (MANV, MADA, THOIGIAN)
+
+Viết câu lệnh SQL thực hiện các yêu cầu sau:
+a. Liệt kê thông tin nhân viên không có thân nhân. Thông tin yêu cầu: Mã nhân viên, họ tên, mã phòng ban của nhân viên đó 
+b. Viết thủ tục nhập thêm vào dự án mới có kiểm tra ràng buộc khóa chính, ràng buộc khóa ngoại với bảng PHONGBAN. 
+c. Viết hàm thống kê số lượng nhân viên theo từng phòng ban.
+
+Câu 2: Cho lược đồ cơ sở dữ liệu Cho thuê nhà như sau: 
+- Chinhanh (MaCN, TenCN, Diachi, Sodienthoai, Sofax)
+- Nhanvien (MaNV, Hoten, Diachi, Gioitinh, Chucvu, Ngaysinh, Luong, MaCN)
+- Chunha (Machunha, Hoten, Diachi, Sodienthoai)
+- Nhachothue (Manha, Diachi, Kieunha, Soluongphong, Giathue, Machunha, MaCN, MaNV)
+- Khachhang (MaKH, Hoten, Diachi, Sodienthoai)
+- Xemnha (MaKH, Manha, Ngayxem, Nhanxet)
+
+Viết câu lệnh SQL thực hiện yêu cầu sau:
+a. Liệt kê tất cả các nam nhân viên có lương cao hơn trung bình lương của nữ nhân viên, thông tin hiển thị bao gồm tên nhân viên và mức lương tương ứng.
+b. Viết thủ tục thêm một nhân viên mới vào (có kiểm tra ràng buộc khóa chính và khóa ngoại với bảng Chinhanh
+c. Viết hàm thống kê số lượng nhân viên từng chi nhánh

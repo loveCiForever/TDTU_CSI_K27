@@ -1,0 +1,24 @@
+BT FUNCTION:
+1. Nhập vào 1 mã khoa, trả về danh sách các sinh viên của Khoa đó.
+
+2. Với 1 mã sinh viên và 1 mã khoa, kiểm tra xem sinh viên có thuộc khoa này không (trả về đúng hoặc sai)
+
+3. Tính điểm trung bình cộng của sinh viên bất kỳ
+
+4. Nhập vào 1 sinh viên và 1 môn học, trả về các điểm thi của sinh viên này trong các lần thi của môn học đó.
+
+5. Viết hàm thống kê số lượng Sv của từng Khoa
+
+
+BT PROCEDURE:
+1.      In danh sách các sinh viên của 1 khoa
+
+2.      Nhập vào 2 sinh viên, 1 môn học, tìm xem sinh viên nào có điểm thi môn học đó lần đầu tiên là cao hơn.
+
+3.      Nhập vào 1 môn học và 1 mã sv, kiểm tra xem sinh viên có đậu môn này trong lần thi đầu tiên không, nếu đậu thì xuất ra là “Đậu”, không thì xuất ra “Không đậu”
+
+4.      Nhập vào 1 SV mới, kiểm tra ràng buộc khóa chính và khóa ngoại.
+
+5.      Nhập vào 1 sinh viên và 1 môn học, in điểm thi của sinh viên này của các lần thi môn học đó.
+
+Ví dụ:  Lần 1 : 10 Lần 2: 8

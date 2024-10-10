@@ -1,0 +1,7 @@
+Hoàn thành phần C:
+1. Truy vấn đơn giản: 08 câu bất kỳ
+2. Sắp xếp (Order By): 3 câu bất kỳ
+3. Truy vấn sử dụng hàm: year, month, day, getdate, case,: 4 câu bất kỳ
+4. Truy vấn sử dụng hàm kết hợp: max, min, count, sum, avg và gom nhóm: 6 câu bất kỳ (sẽ hướng dẫn sau)
+
+Bài nộp là file word (bao gồm luôn nội dung của buổi 1)

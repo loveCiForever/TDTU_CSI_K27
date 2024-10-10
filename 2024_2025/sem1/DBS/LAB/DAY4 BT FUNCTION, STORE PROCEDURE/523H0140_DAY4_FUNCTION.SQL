@@ -1,0 +1,190 @@
+USE MASTER
+GO
+
+IF EXISTS (SELECT * FROM SYSDATABASES WHERE NAME = 'QLSV_N06')
+	DROP DATABASE QLSV_N06
+GO
+
+SET DATEFORMAT DMY
+CREATE DATABASE QLSV_N06
+GO
+
+USE QLSV_N06 
+GO
+
+CREATE TABLE DMKHOA 
+(
+	MAKHOA VARCHAR(2) NOT NULL,
+	TENKHOA NVARCHAR(20) NOT NULL,
+	CONSTRAINT PK_DMKHOA PRIMARY KEY(MAKHOA)
+)
+GO
+
+CREATE TABLE DMMH
+(
+	MAMH VARCHAR(2) NOT NULL,
+	TENMH NVARCHAR(30) NOT NULL,
+	SOTIET TINYINT,
+	CONSTRAINT PK_DMMH PRIMARY KEY(MAMH)
+)
+GO
+
+CREATE TABLE DMSV
+(
+	MASV VARCHAR(3) NOT NULL,
+	HOSV NVARCHAR(30) NOT NULL,
+	TENSV NVARCHAR(10) NOT NULL,
+	PHAI BIT,
+	NGAYSINH DATE,
+	NOISINH NVARCHAR(25) NOT NULL,
+	MAKHOA VARCHAR(2) NOT NULL,
+	HOCBONG FLOAT,
+	CONSTRAINT PK_DMSV PRIMARY KEY(MASV),
+	CONSTRAINT FK_DMSV_DMKHOA FOREIGN KEY(MAKHOA) REFERENCES DMKHOA(MAKHOA)
+
+)
+GO
+
+CREATE TABLE KETQUA
+(
+	MASV VARCHAR(3) NOT NULL,
+	MAMH VARCHAR(2) NOT NULL,
+	LANTHI TINYINT,
+	DIEM DECIMAL(3, 2),
+
+	CONSTRAINT PK_KETQUA PRIMARY KEY(MASV, MAMH, LANTHI),
+	CONSTRAINT FK_KETQUA_DMMH FOREIGN KEY(MAMH) REFERENCES DMMH(MAMH),
+	CONSTRAINT FK_KETQUA_DMSV FOREIGN KEY(MASV) REFERENCES DMSV(MASV)
+)
+GO
+
+-- Insert data into DMKHOA
+INSERT INTO DMKHOA(MAKHOA, TENKHOA) VALUES
+('AV', N'Anh Van'),
+('TH', N'Tin H?c'),
+('TR', N'Tri?t'),
+('VL', N'V?t Lý');
+GO
+
+-- Insert data into DMMH
+INSERT INTO DMMH(MAMH, TENMH, SOTIET) VALUES
+('01', N'Co s? d? li?u', 45),
+('02', N'Trí tu? nhân t?o', 45),
+('03', N'Truy?n tin', 45),
+('04', N'Ð? ho?', 60),
+('05', N'Van ph?m', 60),
+('06', N'K? thu?t l?p trình', 45);
+GO
+
+-- Insert data into DMSV
+INSERT INTO DMSV(MASV, HOSV, TENSV, PHAI, NGAYSINH, NOISINH, MAKHOA, HOCBONG) VALUES
+('A01', N'Nguy?n th?', N'H?i', 1, '20230223', N'Hà N?i', 'TH', 130000),
+('A02', N'Tr?n van', N'Chính', 0, '20221224', N'Bình Ð?nh', 'VL', 150000),
+('A03', N'Lê thu b?ch', N'Y?n', 1, '20230221', N'Tp HCM', 'TH', 170000),
+('A04', N'Tr?n anh', N'Tu?n', 0, '20241220', N'Hà N?i', 'AV', 80000),
+('B01', N'Tr?n thanh', N'Mai', 1, '20230812', N'Hài Phòng', 'TR', 0),
+('B02', N'Tr?n th? thu', N'Thu?', 1, '20240102', N'Tp HCM', 'AV', 0);
+GO
+
+-- Insert data into KETQUA
+INSERT INTO KETQUA(MASV, MAMH, LANTHI, DIEM) VALUES
+('A01', '01', 1, 3),
+('A01', '01', 2, 6);
+GO
+
+SELECT * FROM KETQUA
+SELECT * FROM DMSV
+SELECT * FROM DMMH
+SELECT * FROM DMKHOA
+
+
+-- CAU 1: Nh?p vào 1 mã khoa, tr? v? danh sách các sinh viên c?a Khoa dó.
+IF OBJECT_ID('GetStudentsByFaculty', 'P') IS NOT NULL
+    DROP PROCEDURE GetStudentsByFaculty
+GO
+
+CREATE PROCEDURE GetStudentsByFaculty @MAKHOA VARCHAR(2)
+AS
+BEGIN
+    SELECT * FROM DMSV WHERE MAKHOA = @MAKHOA
+END
+GO
+
+EXEC GetStudentsByFaculty @MAKHOA = 'TH'
+GO
+
+
+
+-- CAU 2: V?i 1 mã sinh viên và 1 mã khoa, ki?m tra xem sinh viên có thu?c khoa này không (tr? v? dúng ho?c sai)
+IF OBJECT_ID('CheckStudentFaculty', 'FN') IS NOT NULL
+    DROP FUNCTION CheckStudentFaculty
+GO
+
+CREATE FUNCTION CheckStudentFaculty (@MASV VARCHAR(3), @MAKHOA VARCHAR(2))
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @result BIT
+    IF EXISTS (SELECT 1 FROM DMSV WHERE MASV = @MASV AND MAKHOA = @MAKHOA)
+        SET @result = 1
+    ELSE
+        SET @result = 0
+    RETURN @result
+END
+GO
+
+DECLARE @MASV VARCHAR(3) = 'A01'
+DECLARE @MAKHOA VARCHAR(2) = 'TH'
+SELECT dbo.CheckStudentFaculty(@MASV, @MAKHOA) AS Result
+GO
+
+
+-- CAU 3: Tính di?m trung bình c?ng c?a sinh viên b?t k?
+CREATE PROCEDURE GetStudentAverageScore @MASV VARCHAR(3)
+AS
+BEGIN
+    SELECT AVG(DIEM) AS AverageScore
+    FROM KETQUA
+    WHERE MASV = @MASV
+    GROUP BY MASV
+END
+GO
+
+DECLARE @MASV VARCHAR(3) = 'A01'
+EXEC GetStudentAverageScore @MASV
+GO
+
+
+-- CAU 4: Nh?p vào 1 sinh viên và 1 môn h?c, tr? v? các di?m thi c?a sinh viên này trong các l?n thi c?a môn h?c dó.
+IF OBJECT_ID('GetStudentScoresBySubject', 'P') IS NOT NULL
+    DROP PROCEDURE GetStudentScoresBySubject
+GO
+
+CREATE PROCEDURE GetStudentScoresBySubject @MASV VARCHAR(3), @MAMH VARCHAR(2)
+AS
+BEGIN
+    SELECT LANTHI, DIEM
+    FROM KETQUA
+    WHERE MASV = @MASV AND MAMH = @MAMH
+    ORDER BY LANTHI
+END
+GO
+
+DECLARE @MASV VARCHAR(3) = 'A01'
+DECLARE @MAMH VARCHAR(2) = '01'
+EXEC GetStudentScoresBySubject @MASV, @MAMH
+GO
+
+
+-- CAU 5: Vi?t hàm th?ng kê s? lu?ng Sv c?a t?ng Khoa
+CREATE PROCEDURE GetStudentCountByFaculty
+AS
+BEGIN
+    SELECT MAKHOA, COUNT(MASV) AS StudentCount
+    FROM DMSV
+    GROUP BY MAKHOA
+END
+GO
+
+EXEC GetStudentCountByFaculty
+GO

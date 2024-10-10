@@ -1,0 +1,40 @@
+.data
+greater: .asciiz "A > B"
+smaller: .asciiz "A < B"
+equal: .asciiz "A = B"
+
+.text
+.globl main
+main:
+
+li $v0,5
+syscall
+move $t0,$v0
+
+li $v0,5
+syscall
+move $t1,$v0 
+
+blt $t0, $t1, case_2
+beq $t0, $t1, case_3
+
+case_1: 
+li $v0,4
+la $a0, greater
+syscall
+j exit
+
+case_2:
+li $v0,4
+la $a0, smaller
+syscall
+j exit
+
+case_3:
+li $v0,4
+la $a0, equal
+syscall
+
+exit:
+li $v0,10
+syscall

@@ -1,0 +1,28 @@
+CAU 1
+A. π tenDA (σ kinhphi < 10,000,000 DUAN)
+
+B. 
+π maNV, hoten, diachi (
+  σ maDA = 'TH01' ∧ maDA = 'TH02' (
+    PHANCONG ⋈ DUAN
+  ) ⋈ NHANVIEN
+)
+
+CAU 2
+A. π tenLOP (σ HOCPHI > 10,000,000 LOP)
+
+B. 
+π MALOP (
+  σ MAHV = 'Nguyễn Duy Minh' ∧ MONTH(NGAYDK) = 7 ∧ YEAR(NGAYDK) = 2019 (
+    DANGKY ⋈ HOCVIEN
+  )
+)
+
+C.
+π HOTEN (
+  ρ GIAOVIEN - π MAGV (
+    σ NAMHOC = '2019-2020' LOP
+  )
+)
+
+

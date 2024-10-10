@@ -1,0 +1,2 @@
+Tạo DB, Tạo Table, Ràng buộc (nếu có), nhập liệu
+Làm phần 2.1, 2.2, 2.3 và 2.4
