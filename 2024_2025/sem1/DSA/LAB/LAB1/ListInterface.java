@@ -1,16 +1,18 @@
-import java.util.*;
 
-public interface ListInterface <E> {
-	public boolean isEmpty();
-	public int     size();
-	public E       getFirst() throws NoSuchElementException; 
-	public boolean contains(E item);
-	public void    addFirst(E item);
-	public E       removeFirst() throws NoSuchElementException;  
-	public void    print();
-    public void addLast(E item);
-    public void addAfter (E y, E x);
-	public void addAfter  (ListNode<E> y, ListNode<E> x);
-	public void removeAfter(E x);
+public interface ListInterface {
+	public Node getHead();
 
+	public void addFirst(Integer data);
+
+	public void removeFirst();
+	public void removeCurr(Node curr);
+
+	public int countEvenItem();
+	public int countPrimeItem();
+
+	public void addBeforeTheFirstEvenElement(Node x);
+
+	public int findMaximum();
+
+	public void reverseListWithOutTempList();
 }
